@@ -23,4 +23,7 @@ clean:
 run-sync: SERVICE_TYPE=sync
 run-sync: run
 
+run-boids: SERVICE_TYPE=boids
+run-boids: run
+
 .PHONY: all build run clean check-build check-build-windows run-sync

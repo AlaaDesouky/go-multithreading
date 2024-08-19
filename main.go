@@ -11,10 +11,11 @@ type SERVICE_TYPE string
 
 var (
 	SYNC SERVICE_TYPE = "sync"
+	BOIDS SERVICE_TYPE = "boids"
 )
 
 func main() {
-	services := []SERVICE_TYPE{SYNC}
+	services := []SERVICE_TYPE{SYNC, BOIDS}
 
 	serviceType := flag.String("service", "", fmt.Sprintf("Specify the service to run: %v", services))
 
@@ -27,6 +28,7 @@ func main() {
 
 	switch SERVICE_TYPE(*serviceType) {
 	case SYNC:
+	case BOIDS:
 		runService(SERVICE_TYPE(*serviceType))
 	default:
 		fmt.Printf("Unknown service type: %s\n", *serviceType)
