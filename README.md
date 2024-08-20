@@ -6,6 +6,7 @@ To run any of the code examples/scenarios, use the `-service` flag to specify th
 
 - `sync`
 - `boids`
+- `filesearch` `ARGS=ROOT,FILENAME`
 
 ### Run Using `go run` or `make`
 
@@ -14,8 +15,8 @@ Navigate to the project directory and use the following command to run a specifi
 ```bash
 cd ./go-multithreading
 # using go run
-go run main.go -service=<SERVICE_TYPE>
+go run main.go -service=<SERVICE_TYPE> -<args>=<ARGS>
 
 # using make
-make run-<SERVICE_TYPE>
+make run-<SERVICE_TYPE> <ARGS>
 ```

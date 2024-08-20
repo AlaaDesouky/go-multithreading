@@ -12,18 +12,20 @@ build:
 # Run the application with a specific service type
 run: build
 	@echo "Running $(BINARY_NAME) with service type $(SERVICE_TYPE)"
-	./$(BINARY_NAME) -service=$(SERVICE_TYPE)
+	./$(BINARY_NAME) -service=$(SERVICE_TYPE) $(if $(ROOT),-root=$(ROOT)) $(if $(FILENAME),-filename=$(FILENAME))
 
 # Clean up generated files
 clean:
 	@echo "Cleaning up..."
-	@del /q $(BINARY_NAME) 2>nul || rm -f $(BINARY_NAME)
+	@if exist $(BINARY_NAME) (del /q $(BINARY_NAME)) else (rm -f $(BINARY_NAME))
 
-# Specific target to run the sync service
 run-sync: SERVICE_TYPE=sync
 run-sync: run
 
 run-boids: SERVICE_TYPE=boids
 run-boids: run
 
-.PHONY: all build run clean check-build check-build-windows run-sync
+run-filesearch: SERVICE_TYPE=filesearch
+run-filesearch: run
+
+.PHONY: all build run clean run-sync run-boids run-filesearch
