@@ -14,8 +14,9 @@ var (
 	BOIDS          SERVICE_TYPE = "boids"
 	FILE_SEARCH    SERVICE_TYPE = "filesearch"
 	WIND_DIRECTION SERVICE_TYPE = "winddirection"
+	THREAD_POOL    SERVICE_TYPE = "threadpool"
 
-	services = []SERVICE_TYPE{SYNC, BOIDS, FILE_SEARCH, WIND_DIRECTION}
+	services = []SERVICE_TYPE{SYNC, BOIDS, FILE_SEARCH, WIND_DIRECTION, THREAD_POOL}
 )
 
 func main() {
@@ -31,6 +32,7 @@ func main() {
 	case BOIDS:
 	case FILE_SEARCH:
 	case WIND_DIRECTION:
+	case THREAD_POOL:
 		runService(SERVICE_TYPE(*serviceType), otherFlags)
 
 	default:

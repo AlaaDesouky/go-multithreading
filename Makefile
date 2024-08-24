@@ -33,4 +33,7 @@ run-filesearch: run
 run-winddirection: SERVICE_TYPE=winddirection
 run-winddirection: run
 
-.PHONY: all build run clean run-sync run-boids run-filesearch run-winddirection
+run-threadpool: SERVICE_TYPE=threadpool
+run-threadpool: run
+
+.PHONY: all build run clean run-sync run-boids run-filesearch run-winddirection run-threadpool
