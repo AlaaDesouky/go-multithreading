@@ -36,4 +36,7 @@ run-winddirection: run
 run-threadpool: SERVICE_TYPE=threadpool
 run-threadpool: run
 
-.PHONY: all build run clean run-sync run-boids run-filesearch run-winddirection run-threadpool
+run-matrixmultiplication: SERVICE_TYPE=matrixmultiplication run
+run-matrixmultiplication: run
+
+.PHONY: all build run clean run-sync run-boids run-filesearch run-winddirection run-threadpool run-matrixmultiplication

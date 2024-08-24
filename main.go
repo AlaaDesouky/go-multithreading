@@ -10,13 +10,14 @@ import (
 type SERVICE_TYPE string
 
 var (
-	SYNC           SERVICE_TYPE = "sync"
-	BOIDS          SERVICE_TYPE = "boids"
-	FILE_SEARCH    SERVICE_TYPE = "filesearch"
-	WIND_DIRECTION SERVICE_TYPE = "winddirection"
-	THREAD_POOL    SERVICE_TYPE = "threadpool"
+	SYNC                  SERVICE_TYPE = "sync"
+	BOIDS                 SERVICE_TYPE = "boids"
+	FILE_SEARCH           SERVICE_TYPE = "filesearch"
+	WIND_DIRECTION        SERVICE_TYPE = "winddirection"
+	THREAD_POOL           SERVICE_TYPE = "threadpool"
+	MATRIX_MULTIPLICATION SERVICE_TYPE = "matrixmultiplication"
 
-	services = []SERVICE_TYPE{SYNC, BOIDS, FILE_SEARCH, WIND_DIRECTION, THREAD_POOL}
+	services = []SERVICE_TYPE{SYNC, BOIDS, FILE_SEARCH, WIND_DIRECTION, THREAD_POOL, MATRIX_MULTIPLICATION}
 )
 
 func main() {
@@ -33,6 +34,7 @@ func main() {
 	case FILE_SEARCH:
 	case WIND_DIRECTION:
 	case THREAD_POOL:
+	case MATRIX_MULTIPLICATION:
 		runService(SERVICE_TYPE(*serviceType), otherFlags)
 
 	default:
