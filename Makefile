@@ -1,6 +1,8 @@
 # Define variables
 BINARY_NAME=bin
 SERVICE_TYPE=
+ROOT=
+FILENAME=
 
 # Default target
 all: build
@@ -28,4 +30,7 @@ run-boids: run
 run-filesearch: SERVICE_TYPE=filesearch
 run-filesearch: run
 
-.PHONY: all build run clean run-sync run-boids run-filesearch
+run-winddirection: SERVICE_TYPE=winddirection
+run-winddirection: run
+
+.PHONY: all build run clean run-sync run-boids run-filesearch run-winddirection

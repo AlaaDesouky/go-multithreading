@@ -10,11 +10,12 @@ import (
 type SERVICE_TYPE string
 
 var (
-	SYNC SERVICE_TYPE = "sync"
-	BOIDS SERVICE_TYPE = "boids"
-	FILE_SEARCH SERVICE_TYPE = "filesearch"
+	SYNC           SERVICE_TYPE = "sync"
+	BOIDS          SERVICE_TYPE = "boids"
+	FILE_SEARCH    SERVICE_TYPE = "filesearch"
+	WIND_DIRECTION SERVICE_TYPE = "winddirection"
 
-	services = []SERVICE_TYPE{SYNC, BOIDS, FILE_SEARCH}
+	services = []SERVICE_TYPE{SYNC, BOIDS, FILE_SEARCH, WIND_DIRECTION}
 )
 
 func main() {
@@ -29,6 +30,7 @@ func main() {
 	case SYNC:
 	case BOIDS:
 	case FILE_SEARCH:
+	case WIND_DIRECTION:
 		runService(SERVICE_TYPE(*serviceType), otherFlags)
 
 	default:
@@ -47,7 +49,7 @@ func parseFlags() (*string, []string) {
 
 	var otherFlags []string
 	flag.VisitAll(func(f *flag.Flag) {
-		if f.Name != "service" {
+		if f.Name != "service" && f.Value.String() != "" {
 			otherFlags = append(otherFlags, fmt.Sprintf("-%s=%s", f.Name, f.Value))
 		}
 	})
@@ -56,7 +58,13 @@ func parseFlags() (*string, []string) {
 }
 
 func runService(service SERVICE_TYPE, otherFlags []string) {
-	fmt.Printf("Running service: %s with flags: %v\n", service, otherFlags)
+	log := fmt.Sprintf("Running service: %s", service)
+
+	if len(otherFlags) > 0 {
+		log = fmt.Sprintf("%s with flags: %v", log, otherFlags)
+	}
+
+	fmt.Printf("%v\n", log)
 
 	cmdArgs := append([]string{"run", fmt.Sprintf("./%s/main.go", service)}, otherFlags...)
 	cmd := exec.Command("go", cmdArgs...)
