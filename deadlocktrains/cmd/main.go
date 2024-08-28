@@ -61,3 +61,29 @@ func RunDeadlock() {
 		log.Fatal(err)
 	}
 }
+
+func RunDeadlockWithHierarchy() {
+	for i := 0; i < noOfCrossings; i++ {
+		trains[i] = &Train{ID: i, TrainLength: trainLength, Front: 0}
+		intersections[i] = &Intersection{ID: i, Mutex: sync.Mutex{}, LockedBy: -1}
+	}
+
+	// Deadlock
+	go MoveTrainHierarchy(trains[0], 300, []*Crossing{{Position: 125, Intersection: intersections[0]},
+		{Position: 175, Intersection: intersections[1]}})
+
+	go MoveTrainHierarchy(trains[1], 300, []*Crossing{{Position: 125, Intersection: intersections[1]},
+		{Position: 175, Intersection: intersections[2]}})
+
+	go MoveTrainHierarchy(trains[2], 300, []*Crossing{{Position: 125, Intersection: intersections[2]},
+		{Position: 175, Intersection: intersections[3]}})
+
+	go MoveTrainHierarchy(trains[3], 300, []*Crossing{{Position: 125, Intersection: intersections[3]},
+		{Position: 175, Intersection: intersections[0]}})
+
+	ebiten.SetWindowSize(windowSize*3, windowSize*3)
+	ebiten.SetWindowTitle(windowTitle + " - Deadlock Hierarchy")
+	if err := ebiten.RunGame(&Game{}); err != nil {
+		log.Fatal(err)
+	}
+}
