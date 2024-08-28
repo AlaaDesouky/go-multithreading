@@ -16,8 +16,9 @@ var (
 	WIND_DIRECTION        SERVICE_TYPE = "winddirection"
 	THREAD_POOL           SERVICE_TYPE = "threadpool"
 	MATRIX_MULTIPLICATION SERVICE_TYPE = "matrixmultiplication"
+	DEADLOCK_TRAINS       SERVICE_TYPE = "deadlocktrains"
 
-	services = []SERVICE_TYPE{SYNC, BOIDS, FILE_SEARCH, WIND_DIRECTION, THREAD_POOL, MATRIX_MULTIPLICATION}
+	services = []SERVICE_TYPE{SYNC, BOIDS, FILE_SEARCH, WIND_DIRECTION, THREAD_POOL, MATRIX_MULTIPLICATION, DEADLOCK_TRAINS}
 )
 
 func main() {
@@ -35,6 +36,7 @@ func main() {
 	case WIND_DIRECTION:
 	case THREAD_POOL:
 	case MATRIX_MULTIPLICATION:
+	case DEADLOCK_TRAINS:
 		runService(SERVICE_TYPE(*serviceType), otherFlags)
 
 	default:

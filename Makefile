@@ -39,4 +39,7 @@ run-threadpool: run
 run-matrixmultiplication: SERVICE_TYPE=matrixmultiplication run
 run-matrixmultiplication: run
 
-.PHONY: all build run clean run-sync run-boids run-filesearch run-winddirection run-threadpool run-matrixmultiplication
+run-deadlocktrains: SERVICE_TYPE=deadlocktrains run
+run-deadlocktrains: run
+
+.PHONY: all build run clean run-sync run-boids run-filesearch run-winddirection run-threadpool run-matrixmultiplication run-deadlocktrains
