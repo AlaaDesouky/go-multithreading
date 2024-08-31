@@ -43,4 +43,7 @@ run-matrixmultiplication: run
 run-deadlocktrains: SERVICE_TYPE=deadlocktrains
 run-deadlocktrains: run
 
-.PHONY: all build run clean run-sync run-boids run-filesearch run-winddirection run-threadpool run-matrixmultiplication run-deadlocktrains
+run-barrier: SERVICE_TYPE=barrier
+run-barrier: run
+
+.PHONY: all build run clean run-sync run-boids run-filesearch run-winddirection run-threadpool run-matrixmultiplication run-deadlocktrains run-barrier
