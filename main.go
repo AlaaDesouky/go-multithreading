@@ -10,16 +10,17 @@ import (
 type SERVICE_TYPE string
 
 var (
-	SYNC                  SERVICE_TYPE = "sync"
-	BOIDS                 SERVICE_TYPE = "boids"
-	FILE_SEARCH           SERVICE_TYPE = "filesearch"
-	WIND_DIRECTION        SERVICE_TYPE = "winddirection"
-	THREAD_POOL           SERVICE_TYPE = "threadpool"
-	MATRIX_MULTIPLICATION SERVICE_TYPE = "matrixmultiplication"
-	DEADLOCK_TRAINS       SERVICE_TYPE = "deadlocktrains"
-	BARRIER               SERVICE_TYPE = "barrier"
+	SYNC                           SERVICE_TYPE = "sync"
+	BOIDS                          SERVICE_TYPE = "boids"
+	FILE_SEARCH                    SERVICE_TYPE = "filesearch"
+	WIND_DIRECTION                 SERVICE_TYPE = "winddirection"
+	THREAD_POOL                    SERVICE_TYPE = "threadpool"
+	MATRIX_MULTIPLICATION          SERVICE_TYPE = "matrixmultiplication"
+	DEADLOCK_TRAINS                SERVICE_TYPE = "deadlocktrains"
+	BARRIER                        SERVICE_TYPE = "barrier"
+	MATRIX_MULTIPLICATION_BARRIERS SERVICE_TYPE = "matrixmultiplicationbarriers"
 
-	services = []SERVICE_TYPE{SYNC, BOIDS, FILE_SEARCH, WIND_DIRECTION, THREAD_POOL, MATRIX_MULTIPLICATION, DEADLOCK_TRAINS, BARRIER}
+	services = []SERVICE_TYPE{SYNC, BOIDS, FILE_SEARCH, WIND_DIRECTION, THREAD_POOL, MATRIX_MULTIPLICATION, DEADLOCK_TRAINS, BARRIER, MATRIX_MULTIPLICATION_BARRIERS}
 )
 
 func main() {
@@ -39,6 +40,7 @@ func main() {
 	case MATRIX_MULTIPLICATION:
 	case DEADLOCK_TRAINS:
 	case BARRIER:
+	case MATRIX_MULTIPLICATION_BARRIERS:
 		runService(SERVICE_TYPE(*serviceType), otherFlags)
 
 	default:
