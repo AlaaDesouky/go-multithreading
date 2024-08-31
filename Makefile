@@ -3,6 +3,7 @@ BINARY_NAME=bin
 SERVICE_TYPE=
 ROOT=
 FILENAME=
+SIMULATION=
 
 # Default target
 all: build
@@ -14,7 +15,7 @@ build:
 # Run the application with a specific service type
 run: build
 	@echo "Running $(BINARY_NAME) with service type $(SERVICE_TYPE)"
-	./$(BINARY_NAME) -service=$(SERVICE_TYPE) $(if $(ROOT),-root=$(ROOT)) $(if $(FILENAME),-filename=$(FILENAME))
+	./$(BINARY_NAME) -service=$(SERVICE_TYPE) $(if $(ROOT),-root=$(ROOT)) $(if $(FILENAME),-filename=$(FILENAME)) $(if $(SIMULATION),-simulation=$(SIMULATION))
 
 # Clean up generated files
 clean:
@@ -36,10 +37,10 @@ run-winddirection: run
 run-threadpool: SERVICE_TYPE=threadpool
 run-threadpool: run
 
-run-matrixmultiplication: SERVICE_TYPE=matrixmultiplication run
+run-matrixmultiplication: SERVICE_TYPE=matrixmultiplication
 run-matrixmultiplication: run
 
-run-deadlocktrains: SERVICE_TYPE=deadlocktrains run
+run-deadlocktrains: SERVICE_TYPE=deadlocktrains
 run-deadlocktrains: run
 
 .PHONY: all build run clean run-sync run-boids run-filesearch run-winddirection run-threadpool run-matrixmultiplication run-deadlocktrains

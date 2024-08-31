@@ -50,6 +50,7 @@ func parseFlags() (*string, []string) {
 
 	flag.String("root", "", "Specify the root directory for file search service")
 	flag.String("filename", "", "Specify the filename to search for")
+	flag.String("simulation", "", "Simulation type to run")
 
 	flag.Parse()
 
