@@ -42,7 +42,6 @@ func RunDeadlock() {
 		intersections[i] = &Intersection{ID: i, Mutex: sync.Mutex{}, LockedBy: -1}
 	}
 
-	// Deadlock
 	go MoveTrainDeadlock(trains[0], 300, []*Crossing{{Position: 125, Intersection: intersections[0]},
 		{Position: 175, Intersection: intersections[1]}})
 
@@ -68,7 +67,6 @@ func RunDeadlockWithHierarchy() {
 		intersections[i] = &Intersection{ID: i, Mutex: sync.Mutex{}, LockedBy: -1}
 	}
 
-	// Deadlock
 	go MoveTrainHierarchy(trains[0], 300, []*Crossing{{Position: 125, Intersection: intersections[0]},
 		{Position: 175, Intersection: intersections[1]}})
 
@@ -83,6 +81,31 @@ func RunDeadlockWithHierarchy() {
 
 	ebiten.SetWindowSize(windowSize*3, windowSize*3)
 	ebiten.SetWindowTitle(windowTitle + " - Deadlock Hierarchy")
+	if err := ebiten.RunGame(&Game{}); err != nil {
+		log.Fatal(err)
+	}
+}
+
+func RunDeadlockWithArbitrator() {
+	for i := 0; i < noOfCrossings; i++ {
+		trains[i] = &Train{ID: i, TrainLength: trainLength, Front: 0}
+		intersections[i] = &Intersection{ID: i, Mutex: sync.Mutex{}, LockedBy: -1}
+	}
+
+	go MoveTrainArbitrator(trains[0], 300, []*Crossing{{Position: 125, Intersection: intersections[0]},
+		{Position: 175, Intersection: intersections[1]}})
+
+	go MoveTrainArbitrator(trains[1], 300, []*Crossing{{Position: 125, Intersection: intersections[1]},
+		{Position: 175, Intersection: intersections[2]}})
+
+	go MoveTrainArbitrator(trains[2], 300, []*Crossing{{Position: 125, Intersection: intersections[2]},
+		{Position: 175, Intersection: intersections[3]}})
+
+	go MoveTrainArbitrator(trains[3], 300, []*Crossing{{Position: 125, Intersection: intersections[3]},
+		{Position: 175, Intersection: intersections[0]}})
+
+	ebiten.SetWindowSize(windowSize*3, windowSize*3)
+	ebiten.SetWindowTitle(windowTitle + " - Deadlock Arbitrator")
 	if err := ebiten.RunGame(&Game{}); err != nil {
 		log.Fatal(err)
 	}
